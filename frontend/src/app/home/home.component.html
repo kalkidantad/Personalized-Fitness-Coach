@@ -1,0 +1,44 @@
+<div class="container">
+  <h1>Welcome to Your Personalized Fitness Coach</h1>
+
+  <!-- Preferences Form -->
+  <div class="preferences-form">
+    <h2>Enter Your Preferences</h2>
+    <form (ngSubmit)="submitPreferences($event)">
+      <label for="goal">Goal:</label>
+      <select id="goal" [(ngModel)]="preferences.goal" name="goal">
+        <option value="weight loss">Weight Loss</option>
+        <option value="muscle gain">Muscle Gain</option>
+        <option value="endurance">Endurance</option>
+      </select>
+
+      <label for="preference">Workout Preference:</label>
+      <select id="preference" [(ngModel)]="preferences.preference" name="preference">
+        <option value="gym">Gym</option>
+        <option value="home workouts">Home Workouts</option>
+      </select>
+
+      <button type="submit">Generate Recommendations</button> <!-- Generate button -->
+    </form>
+  </div>
+
+  <!-- Recommendations Section -->
+  <div class="recommendations-section" *ngIf="recommendations">
+    <h2>Your Personalized Recommendations</h2>
+    <div [innerHTML]="recommendations | nl2br | replaceSymbols "></div> <!-- Display formatted recommendations -->
+  </div>
+
+  <!-- Feedback Form -->
+  <div class="feedback-form">
+    <h2>Provide Feedback</h2>
+    <form (ngSubmit)="submitFeedback($event)">
+      <textarea
+        [(ngModel)]="feedback"
+        name="feedback"
+        placeholder="Enter your feedback (e.g., 'too hard', 'too easy')"
+        required
+      ></textarea>
+      <button type="submit">Submit Feedback & Regenerate Recommendations</button>
+    </form>
+  </div>
+</div>
